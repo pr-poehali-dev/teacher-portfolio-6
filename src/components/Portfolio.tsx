@@ -12,7 +12,7 @@ const works = [
     title: 'Городской пейзаж',
     student: 'Анна Иванова, 10 класс',
     category: 'Живопись',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/8588b5ca-8675-4b2a-972c-512e04104843.jpg',
     award: 'Диплом I степени',
   },
   {
@@ -20,14 +20,14 @@ const works = [
     title: 'Абстрактная композиция',
     student: 'Петр Сидоров, 9 класс',
     category: 'Цифровое искусство',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/1f954b28-f5d1-4a2a-a3e5-7c66a095b751.jpg',
   },
   {
     id: 3,
     title: 'Портрет',
     student: 'Мария Петрова, 11 класс',
     category: 'Графика',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/1f954b28-f5d1-4a2a-a3e5-7c66a095b751.jpg',
     award: 'Лауреат конкурса',
   },
   {
@@ -35,26 +35,26 @@ const works = [
     title: 'Натюрморт',
     student: 'Иван Козлов, 8 класс',
     category: 'Живопись',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/8588b5ca-8675-4b2a-972c-512e04104843.jpg',
   },
   {
     id: 5,
     title: 'Фантазия',
     student: 'Ольга Смирнова, 10 класс',
     category: 'Скульптура',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/8588b5ca-8675-4b2a-972c-512e04104843.jpg',
   },
   {
     id: 6,
     title: 'Природа',
     student: 'Алексей Волков, 9 класс',
     category: 'Графика',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/1f954b28-f5d1-4a2a-a3e5-7c66a095b751.jpg',
     award: 'Диплом II степени',
   },
 ];
 
-const Portfolio = () => {
+export const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState('Все работы');
 
   const filteredWorks = selectedCategory === 'Все работы'
@@ -123,5 +123,3 @@ const Portfolio = () => {
     </section>
   );
 };
-
-export default Portfolio;

@@ -38,7 +38,7 @@ const publications = [
   },
 ];
 
-const Publications = () => {
+export const Publications = () => {
   return (
     <section id="publications" className="py-20 relative">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
@@ -111,4 +111,3 @@ const Publications = () => {
   );
 };
 
-export default Publications;
