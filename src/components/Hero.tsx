@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
-const Hero = () => {
+export const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10" />
       
       <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
@@ -66,7 +66,7 @@ const Hero = () => {
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-primary via-accent to-secondary rounded-3xl blur-2xl opacity-30" />
             <img
-              src="https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/45762b76-2263-43ae-b57d-634f6df01df6.jpg"
+              src="https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/575b77bd-235a-47f0-a1f7-a7acb291d63e.jpg"
               alt="Портфолио учителя"
               className="relative rounded-3xl shadow-2xl w-full"
             />
@@ -77,4 +77,3 @@ const Hero = () => {
   );
 };
 
-export default Hero;

@@ -1,125 +1,120 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import Icon from '@/components/ui/icon';
 
-type Category = 'all' | 'drawing' | 'painting' | 'sculpture' | 'digital';
+const categories = ['Все работы', 'Живопись', 'Графика', 'Скульптура', 'Цифровое искусство'];
 
-interface Work {
-  id: number;
-  title: string;
-  student: string;
-  category: Category;
-  image: string;
-  year: string;
-}
-
-const works: Work[] = [
+const works = [
   {
     id: 1,
-    title: 'Осенний пейзаж',
-    student: 'Анна М., 8 класс',
-    category: 'painting',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/4bae2b2c-e13f-432c-afc2-42dad9e86a1b.jpg',
-    year: '2024'
+    title: 'Городской пейзаж',
+    student: 'Анна Иванова, 10 класс',
+    category: 'Живопись',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    award: 'Диплом I степени',
   },
   {
     id: 2,
-    title: 'Портрет в технике гризайль',
-    student: 'Дмитрий К., 10 класс',
-    category: 'drawing',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/67ff614c-9edf-4777-90c8-7bcaf4e75acb.jpg',
-    year: '2024'
+    title: 'Абстрактная композиция',
+    student: 'Петр Сидоров, 9 класс',
+    category: 'Цифровое искусство',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
   },
   {
     id: 3,
-    title: 'Абстрактная композиция',
-    student: 'Мария С., 9 класс',
-    category: 'digital',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/4bae2b2c-e13f-432c-afc2-42dad9e86a1b.jpg',
-    year: '2023'
+    title: 'Портрет',
+    student: 'Мария Петрова, 11 класс',
+    category: 'Графика',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    award: 'Лауреат конкурса',
   },
   {
     id: 4,
-    title: 'Натюрморт с фруктами',
-    student: 'Елена В., 7 класс',
-    category: 'painting',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/67ff614c-9edf-4777-90c8-7bcaf4e75acb.jpg',
-    year: '2023'
+    title: 'Натюрморт',
+    student: 'Иван Козлов, 8 класс',
+    category: 'Живопись',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
   },
   {
     id: 5,
-    title: 'Городской скетч',
-    student: 'Иван П., 11 класс',
-    category: 'drawing',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/4bae2b2c-e13f-432c-afc2-42dad9e86a1b.jpg',
-    year: '2024'
+    title: 'Фантазия',
+    student: 'Ольга Смирнова, 10 класс',
+    category: 'Скульптура',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
   },
   {
     id: 6,
-    title: 'Скульптурная композиция',
-    student: 'Ольга Т., 9 класс',
-    category: 'sculpture',
-    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/67ff614c-9edf-4777-90c8-7bcaf4e75acb.jpg',
-    year: '2023'
-  }
+    title: 'Природа',
+    student: 'Алексей Волков, 9 класс',
+    category: 'Графика',
+    image: 'https://cdn.poehali.dev/projects/4a709841-d94e-4fa2-9b9f-d6b9ffd56fb9/files/b8812b3f-123b-4977-934b-923ea9e34dee.jpg',
+    award: 'Диплом II степени',
+  },
 ];
 
-export const Portfolio = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>('all');
+const Portfolio = () => {
+  const [selectedCategory, setSelectedCategory] = useState('Все работы');
 
-  const categories = [
-    { id: 'all' as Category, label: 'Все работы' },
-    { id: 'drawing' as Category, label: 'Рисунок' },
-    { id: 'painting' as Category, label: 'Живопись' },
-    { id: 'sculpture' as Category, label: 'Скульптура' },
-    { id: 'digital' as Category, label: 'Цифровое искусство' }
-  ];
-
-  const filteredWorks = activeCategory === 'all' 
-    ? works 
-    : works.filter(work => work.category === activeCategory);
+  const filteredWorks = selectedCategory === 'Все работы'
+    ? works
+    : works.filter(work => work.category === selectedCategory);
 
   return (
-    <section id="portfolio" className="py-16 md:py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="portfolio" className="py-20 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Портфолио <span className="text-primary">работ учеников</span>
+          <Badge className="mb-4 bg-gradient-to-r from-primary to-accent text-white">
+            Портфолио
+          </Badge>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Работы <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">учеников</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Лучшие творческие проекты моих учеников. Каждая работа отражает индивидуальный подход и творческое развитие.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Творческие достижения и успехи моих талантливых учеников
           </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (
             <Button
-              key={category.id}
-              variant={activeCategory === category.id ? 'default' : 'outline'}
-              onClick={() => setActiveCategory(category.id)}
-              className="rounded-full"
+              key={category}
+              variant={selectedCategory === category ? 'default' : 'outline'}
+              onClick={() => setSelectedCategory(category)}
+              className={selectedCategory === category ? 'bg-gradient-to-r from-primary to-accent' : ''}
             >
-              {category.label}
+              {category}
             </Button>
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredWorks.map((work) => (
-            <Card key={work.id} className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="relative overflow-hidden aspect-square">
+            <Card key={work.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-2">
+              <div className="relative overflow-hidden">
                 <img
                   src={work.image}
                   alt={work.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-bold mb-2">{work.title}</h3>
-                    <p className="text-sm text-gray-200">{work.student}</p>
-                    <p className="text-xs text-gray-300 mt-1">{work.year}</p>
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {work.award && (
+                  <Badge className="absolute top-4 right-4 bg-secondary">
+                    <Icon name="Award" size={16} className="mr-1" />
+                    {work.award}
+                  </Badge>
+                )}
+              </div>
+              
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">{work.title}</h3>
+                <p className="text-muted-foreground mb-3">{work.student}</p>
+                <Badge variant="outline" className="border-primary text-primary">
+                  {work.category}
+                </Badge>
               </div>
             </Card>
           ))}
@@ -128,3 +123,5 @@ export const Portfolio = () => {
     </section>
   );
 };
+
+export default Portfolio;
